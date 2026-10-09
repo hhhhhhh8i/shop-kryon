@@ -496,9 +496,12 @@ async function loadAll(){
  document.querySelectorAll("[data-s]").forEach(i=>i.value=S[i.dataset.s]);
  drawEditor();applyAll();drawOrders();
 }
+const OWNER_EMAIL="elfrangin10@gmail.com";
 async function session(){
  const g=await sb.auth.getSession();me=g.data.session?g.data.session.user:null;
- isAdmin=gateOK;if(me){const r=await sb.rpc("is_admin");isAdmin=isAdmin||r.data===true}
+ // Accès propriétaire côté interface pour cette adresse, même si elle n'est pas encore dans la table admins.
+ isAdmin=gateOK||!!(me&&String(me.email||"").toLowerCase()===OWNER_EMAIL);
+ if(me){const r=await sb.rpc("is_admin");isAdmin=isAdmin||r.data===true}
  $("#t-admin").classList.toggle("hide",!isAdmin);$("#t-login").textContent=(me||gateOK)?"Déconnexion":"Connexion";
  await loadAll();
 }
@@ -657,4 +660,3 @@ $("#m2").src=$(".mark").src;size();drawEditor();applyAll();frame();
 </script>
 </body>
 </html>
-
