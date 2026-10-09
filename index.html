@@ -375,7 +375,7 @@ $("#c-make").onclick=()=>{
  db.codes.push({code,rank:$("#c-rank").value});persist();drawAdmin();$("#c-last").textContent="Nouveau code : "+code;
 };
 /* ===== Supabase : remplace par tes valeurs (voir LISEZ-MOI.md) ===== */
-const SB_URL="https://VOTRE-PROJET.supabase.co",SB_KEY="VOTRE_CLE_ANON";
+const SB_URL="https://movrzojtdubmblysokqb.supabase.co",SB_KEY="sb_publishable_tG19uO9VG5WdD4FQ3coB0Q_RkF4YOPV";
 const sb=supabase.createClient(SB_URL,SB_KEY);
 let isAdmin=false,me=null,orders=[],admins=[];
 const CFG_OK=!/VOTRE/.test(SB_URL+SB_KEY);
